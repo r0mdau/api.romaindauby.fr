@@ -1,0 +1,27 @@
+{
+  "name": "api.romaindauby.fr",
+  "version": "1.0.0",
+  "description": "Api",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r0mdau/api.romaindauby.fr.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "Romain Dauby",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/r0mdau/api.romaindauby.fr/issues"
+  },
+  "homepage": "https://github.com/r0mdau/api.romaindauby.fr#readme",
+  "dependencies": {
+    "js2xmlparser": "^1.0.0",
+    "restify": "^3.0.3",
+    "xml2js": "^0.4.9"
+  }
+}
