@@ -6,10 +6,10 @@ var server = restify.createServer({
     formatters: {
         'application/json; q=5': function format(req, res, body) {
             res.setHeader('Content-type', 'application/hal+json');
-            return JSON.stringify(body);
+            res.send(JSON.stringify(body));
         },
         'application/xml; q=0': function formatFoo(req, res, body) {
-            return js2xmlparser('document', body);
+            res.send(js2xmlparser('document', body));
         }
     }
 });
