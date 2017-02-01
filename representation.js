@@ -1,11 +1,12 @@
 'use strict';
 
-exports.qualiteAirVilles = function (dom) {
+exports.qualiteAirVilles = function (ville, dom) {
     var indice = dom("#index-information .indice").html();
 
     return {
-        ville: "bordeaux",
-        indice: indice
+        ville: ville,
+        indice: indice,
+        indiceComplet: indice + '/100'
     };
 };
 
