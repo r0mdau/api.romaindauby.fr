@@ -5,10 +5,11 @@ module.exports = function (server) {
     var http = require('http');
     var parseString = require('xml2js').parseString;
     var crypto = require('./crypto');
+    var cheerio = require('cheerio');
 
     var documentation = {};
     documentation['self'] = {href: '/'};
-    documentation['qualiteAirVilles'] = {href: '/indicateurs/qualite/air/villes'};
+    documentation['qualiteAirVilles'] = {href: '/qualiteAir/bordeaux'};
     documentation['surfInfo'] = {href: '/surf/conditions'};
 
     server.get('/', function (req, res) {
@@ -19,15 +20,14 @@ module.exports = function (server) {
     });
 
     server.get(documentation['qualiteAirVilles'].href, function (req, res) {
-        var urlQualiteAirVilles = 'fc7a8af6859a36a6ed0d9b588e11321bda4f285f54906f1770a02e34e3d22be9626c2526cd9a6ec61' +
-            '3270c823cf4c5552d9f413d80bba4a587df3e5761931dc94177f57f302f53921a52acae32497f578f65e014';
-        http.get(crypto.decrypt(urlQualiteAirVilles), function (response) {
+        var urlQualiteAirVilles = 'http://www.atmo-nouvelleaquitaine.org/widget/monair/commune/33063';
+        http.get(urlQualiteAirVilles, function (response) {
             var body = '';
             response.on('data', function (chunk) {
                 body += chunk;
             });
             response.on('end', function () {
-                res.send(200, representation.qualiteAirVilles(JSON.parse(body)));
+                res.send(200, representation.qualiteAirVilles(cheerio.load(body)));
             });
         }).on('error', function (e) {
             res.send(400, {erreur: e.message});

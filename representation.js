@@ -1,38 +1,32 @@
 'use strict';
 
-exports.qualiteAirVilles = function (json) {
-    var villes = [
-        'Bordeaux', 'Pau', 'Bayonne', 'Lacq', 'Périgueux',
-        'Agen', 'Dax', 'Arcachon'
-    ];
+exports.qualiteAirVilles = function (dom) {
+    var indice = dom("#index-information .indice").html();
 
-    var jsonVilles = {};
-    for (var ID in json) {
-        if (json.hasOwnProperty(ID)) {
-            jsonVilles[villes[ID - 1]] = json[ID];
-        }
-    }
-    return jsonVilles;
+    return {
+        ville: "bordeaux",
+        indice: indice
+    };
 };
 
 exports.surfInfo = function (json) {
     var jsonSurfInfo = [];
     var semaine = json.PREVISIONS.SPOT[0].JOURS[0].JOUR;
 
-    for(var i = 0; i < semaine.length; i++){
+    for (var i = 0; i < semaine.length; i++) {
         var jour = semaine[i];
         var horaires = jour['HORAIRE'];
         var tableauHoraire = {};
 
-        for(var j = 0; j < horaires.length; j++){
+        for (var j = 0; j < horaires.length; j++) {
             var horaire = horaires[j];
             var conditionSurf = horaire.SURF[0];
             tableauHoraire[horaire['$'].heure + 'h'] = {
                 tailleVagues: conditionSurf.TAILLE_VAGUES[0].PICTO[0]['$'].title,
                 directionHoule: conditionSurf.DIRECTION_HOULE[0].PICTO[0]['$'].title,
                 longueurHoule: {
-                    periode:conditionSurf.LONGUEUR_HOULE[0].PERIODE,
-                    longueur:conditionSurf.LONGUEUR_HOULE[0].LONGUEUR
+                    periode: conditionSurf.LONGUEUR_HOULE[0].PERIODE,
+                    longueur: conditionSurf.LONGUEUR_HOULE[0].LONGUEUR
                 },
                 directionVent: conditionSurf.DIRECTION_VENT[0].PICTO[0]['$'].title,
                 vitesseVent: {
