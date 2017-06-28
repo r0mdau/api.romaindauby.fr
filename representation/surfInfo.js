@@ -1,16 +1,6 @@
 'use strict';
 
-exports.qualiteAirVilles = function (ville, dom) {
-    var indice = dom("#index-information .indice").html();
-
-    return {
-        ville: ville,
-        indice: indice,
-        indiceComplet: indice + '/100'
-    };
-};
-
-exports.surfInfo = function (json) {
+exports.render = function (json) {
     var jsonSurfInfo = [];
     var semaine = json.PREVISIONS.SPOT[0].JOURS[0].JOUR;
 

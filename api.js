@@ -20,6 +20,6 @@ server
 ;
 server.pre(restify.pre.userAgentConnection());
 
-require('./routes')(server);
+require('./lib/routes')(server);
 
 server.listen(8002);
