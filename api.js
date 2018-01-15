@@ -2,17 +2,7 @@
 
 var restify = require('restify');
 var js2xmlparser = require('js2xmlparser');
-var server = restify.createServer({
-    formatters: {
-        'application/json; q=5': function format(req, res, body) {
-            res.setHeader('Content-type', 'application/hal+json');
-            res.send(JSON.stringify(body));
-        },
-        'application/xml; q=0': function formatFoo(req, res, body) {
-            res.send(js2xmlparser('document', body));
-        }
-    }
-});
+var server = restify.createServer();
 
 server
     .use(restify.fullResponse())
